@@ -43,10 +43,6 @@ alias gs='git status'  ## Watch out when using ghostscript
 # Get human readable output from du
 alias dh='du -h --max-depth=1'
 
-# Login as actual user on SCARF and Hartree to enable key exchange
-alias scarf='ssh scarf421@scarf.rl.ac.uk'
-alias hartree='ssh -l mjf78-mxd01 phase2.wonder.hartree.stfc.ac.uk -t command bash -l'
-
 # Use colouring from parent shell in the rare occassion of using tmux
 alias tmux='tmux -2'
 
