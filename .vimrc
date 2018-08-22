@@ -13,6 +13,7 @@ set smartcase
 " Enable syntax highlighting
 syntax enable
 set background=dark
+set hlsearch
 
 " Tell terminal to use all the colours
 set t_Co=256
