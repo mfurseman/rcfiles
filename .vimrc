@@ -1,3 +1,6 @@
+" Get the running system
+let uname = system("uname")
+
 " Common settings
 set nocompatible
 set hidden              " Allow switching buffers without writing to disk
@@ -14,11 +17,18 @@ set smartcase
 syntax enable
 set background=dark
 
+" Choose mapping to terminal colours
+"colorscheme default
+
 " Tell terminal to use all the colours
-set t_Co=256
+if uname == "SunOS"
+    set t_Co=16
+else
+    set t_Co=256
+endif
 
 " Use dark blue for highlight colour (perhaps useful for solarized)
-"hi Search ctermfg=11
+hi Search CTermfg=11
 
 " Show line numbers
 set number
