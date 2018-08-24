@@ -8,20 +8,29 @@ esac
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [ "$(uname)" = "SunOS" ]; then
+    alias ls='gls --color=auto'
+    alias dir='gdir --color=auto'
+    alias vdir='gvdir --color=auto'
+    alias grep='ggrep --color=auto'
+    alias git='/usr/local/depot/git-1.6.4.4/bin/git'
+else
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
 fi
 
-# Some more ls aliases
 alias ll='ls -lF'
 alias la='ls -A'
+alias fgrep='grep -F'
+alias egrep='grep -E'
+
+# If we're on Solaris
+if [ -x /usr/local/depot/vim-7.4/bin/vim ]; then
+    # Then use Vim 7.4
+    alias vim='/usr/bin/env TERM=xtermc /usr/local/depot/vim-7.4/bin/vim'
+fi
+
 
 # Incase we don't have tree installed
 alias tree='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/   /'"'"' -e '"'"'s/-/|/'"'"
@@ -58,25 +67,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x /usr/bin/dircolors ]; then
-    # Command for use in PS1
-    parse_git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-    }
-    export PS1="[\[\e[33m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\] \[\e[32m\]\W\[\e[34m\]\$(parse_git_branch)\[\e[m\]]\\$ "
-fi
-
-## Pretty prompt depending on system
-#if [ -x /usr/bin/dircolors ]; then
-#    # Command for use in PS1
-#    parse_git_branch() {
-#        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-#    }
-#    export PS1="[\[\e[33m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\] \[\e[32m\]\W\[\e[34m\]\$(parse_git_branch)\[\e[m\]]\\$ "
-#else
-#    echo test
-#    # We can define a non coloured PS1 here
-#fi
+# Command for use in PS1
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="[\[\e[33m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\] \[\e[32m\]\W\[\e[34m\]\$(parse_git_branch)\[\e[m\]]\\$ "
 
 # Vim, vim, vim
 export EDITOR=vim
