@@ -21,6 +21,9 @@ set hlsearch
 " Choose mapping to terminal colours
 "colorscheme default
 
+" Choose mapping to terminal colours
+"colorscheme default
+
 " Tell terminal to use all the colours
 if uname == "SunOS"
     set t_Co=16
