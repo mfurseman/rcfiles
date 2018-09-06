@@ -97,6 +97,8 @@ HISTCONTROL=ignoreboth
 # Change the file location because certain bash sessions truncate .bash_history # file upon close.
 export HISTFILE=~/.bash_eternal_history
 
-if [ "$(hostname)" == "matthew-VirtualBox" ]; then
-    PATH=$PATH:/media/sf_shared/clion-2018.2/bin
-fi
+# Use locally installed applications
+# Important to ensure that system binaries are picked up first
+prefix="${HOME}/prefix"
+export PATH="${PATH}:${prefix}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${prefix}/lib"
