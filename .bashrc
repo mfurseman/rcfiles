@@ -60,6 +60,14 @@ alias dh='du -h --max-depth=1'
 # Use colouring from parent shell in the rare occassion of using tmux
 alias tmux='tmux -2'
 
+# Help setup environment for local installation directories
+function set_path {
+    path="$(realpath ${1})"
+    export PATH="${path}/bin:$PATH"
+    export LD_LIBRARY_PATH="${path}/lib:$LD_LIBRARY_PATH"
+}
+
+
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -105,5 +113,4 @@ export HISTFILE=~/.bash_eternal_history
 # Use locally installed applications
 # Important to ensure that system binaries are picked up first
 prefix="${HOME}/prefix"
-export PATH="${PATH}:${prefix}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${prefix}/lib"
+set_path "${prefix}"
