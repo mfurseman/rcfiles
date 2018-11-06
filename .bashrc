@@ -13,6 +13,7 @@ if [ "$(uname)" = "SunOS" ]; then
     alias dir='gdir --color=auto'
     alias vdir='gvdir --color=auto'
     alias grep='ggrep --color=auto'
+    alias tar='gtar'
     alias git='/usr/local/depot/git-1.6.4.4/bin/git'
 else
     alias ls='ls --color=auto'
@@ -31,6 +32,8 @@ if [ -x /usr/local/depot/vim-7.4/bin/vim ]; then
     alias vim='/usr/bin/env TERM=xtermc /usr/local/depot/vim-7.4/bin/vim'
 fi
 
+# Set background colours for xterm, without using .Xdisplay
+alias xterm='xterm -bg black -fg white'
 
 # Incase we don't have tree installed
 if ! type tree > /dev/null 2>&1 ; then
