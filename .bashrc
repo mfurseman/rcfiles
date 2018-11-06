@@ -33,7 +33,7 @@ fi
 
 
 # Incase we don't have tree installed
-if ! type tree > /dev/null; then
+if ! type tree > /dev/null 2>&1 ; then
     alias tree='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/   /'"'"' -e '"'"'s/-/|/'"'"
 fi
 
