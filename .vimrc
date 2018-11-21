@@ -31,9 +31,6 @@ else
     set t_Co=256
 endif
 
-" Use dark blue for highlight colour (perhaps useful for solarized)
-hi Search CTermfg=11
-
 " Show line numbers
 set number
 
