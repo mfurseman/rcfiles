@@ -64,7 +64,7 @@ alias tmux='tmux -2'
 function set_path {
     path="$(realpath ${1})"
     export PATH="${path}/bin:$PATH"
-    export LD_LIBRARY_PATH="${path}/lib:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="${path}/lib:${path}/lib64/:$LD_LIBRARY_PATH"
 }
 
 
