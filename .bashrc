@@ -32,8 +32,8 @@ if [ -x /usr/local/depot/vim-7.4/bin/vim ]; then
     alias vim='/usr/bin/env TERM=xtermc /usr/local/depot/vim-7.4/bin/vim'
 fi
 
-# Set background colours for xterm, without using .Xdisplay
-alias xterm='xterm -bg black -fg white'
+# Set background colours for xterm, without using .Xdisplay or .Xresources
+alias xterm='xterm -bg black -fg green'
 
 # Incase we don't have tree installed
 if ! type tree > /dev/null 2>&1 ; then
@@ -110,7 +110,27 @@ HISTCONTROL=ignoreboth
 # Change the file location because certain bash sessions truncate .bash_history # file upon close.
 export HISTFILE=~/.bash_eternal_history
 
-# Use locally installed applications
-# Important to ensure that system binaries are picked up first
+# More Solaris customisation
+if [ "$(uname)" = "SunOS" ]; then
+    # We need a bunch of stuff on the path before we can use our 'set_path' on Solaris
+    export LD_LIBRARY_PATH=/usr/local/depot/gcc-5.2.0/lib/:$LD_LIBRARY_PATH
+    export PATH=/usr/local/depot/gcc-5.2.0/bin:$PATH
+
+    # What's this for?
+    export LANG=en_GB
+
+    # Add custom prefix to path
+    set_path /work/mfurse/prefix-sun4u-sparc/
+
+    # We don't get home set when coming from a CDO terminal, so assume we want to
+    # set in if we source this file.
+    export HOME=/home/mfurse
+fi
+
+if [ "echo $(hostname) | grep freia" ]; then
+    set_path /work/mfurse/prefix-el7-x86_64/
+fi
+
+# Prefer locally installed applications
 prefix="${HOME}/prefix"
 set_path "${prefix}"
