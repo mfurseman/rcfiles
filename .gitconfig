@@ -1,0 +1,11 @@
+[user]
+	email = matthew.furseman@ukaea.uk
+	name = Matthew Furseman
+
+[color "diff"]
+  commit = blue
+  meta = yellow
+  frag = cyan
+  old = red bold
+  new = green bold
+  whitespace = red reverse
