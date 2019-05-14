@@ -62,9 +62,11 @@ alias tmux='tmux -2'
 
 # Help setup environment for local installation directories
 function set_path {
-    path="$(realpath ${1})"
-    export PATH="${path}/bin:$PATH"
-    export LD_LIBRARY_PATH="${path}/lib:${path}/lib64/:$LD_LIBRARY_PATH"
+    if [ -d "${1}" ]; then
+        path="$(realpath ${1})"
+        export PATH="${path}/bin:$PATH"
+        export LD_LIBRARY_PATH="${path}/lib:${path}/lib64/:$LD_LIBRARY_PATH"
+    fi
 }
 
 
