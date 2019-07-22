@@ -32,7 +32,7 @@ if [ -x /usr/local/depot/vim-7.4/bin/vim ]; then
     alias vim='/usr/bin/env TERM=xtermc /usr/local/depot/vim-7.4/bin/vim'
 fi
 
-# Set background colours for xterm, without using .Xdisplay
+# Set background colours for xterm, without using .Xresources
 alias xterm='xterm -bg black -fg white'
 
 # Incase we don't have tree installed
