@@ -9,3 +9,5 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+[color]
+	ui = auto
