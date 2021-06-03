@@ -1,9 +1,17 @@
 function fish_full_prompt
+
     echo -n -s \
         [ \
         (set_color yellow) $USER \
         (set_color normal) @ \
-        (set_color yellow) (hostname) \
+        (set_color yellow) (hostname)
+    if set -q WSL_DISTRO_NAME
+        echo -n -s \
+            (set_color yellow) \( \
+            (set_color blue) $WSL_DISTRO_NAME \
+            (set_color yellow) \)
+    end
+    echo -n -s \
         (set_color normal) " " (pwd) \
         (set_color blue) (__fish_git_prompt) \
         (set_color normal) "]\$ "
@@ -14,8 +22,14 @@ function fish_medium_prompt
         [ \
         (set_color yellow) $USER \
         (set_color normal) @ \
-        (set_color yellow) (hostname) \
-        (set_color normal) " " (pwd) \
+        (set_color yellow) (hostname)
+    if set -q WSL_DISTRO_NAME
+        echo -n -s \
+            (set_color yellow) \( \
+            (set_color blue) $WSL_DISTRO_NAME \
+            (set_color yellow) \)
+    end
+    echo -n -s \
         (set_color normal) "]\$ "
 end
 
@@ -36,14 +50,6 @@ function fish_prompt --description 'Write out the prompt'
     set __fish_git_prompt_color_branch (set_color yellow)
     set __fish_git_prompt_color_upstream_ahead (set_color green)
     set __fish_git_prompt_color_upstream_behind (set_color red)
-
-    # Status Chars
-#    set __fish_git_prompt_char_dirtystate '⚡'
-#    set __fish_git_prompt_char_stagedstate '→'
-#    set __fish_git_prompt_char_untrackedfiles '☡'
-#    set __fish_git_prompt_char_stashstate '↩'
-#    set __fish_git_prompt_char_upstream_ahead '+'
-#    set __fish_git_prompt_char_upstream_behind '-'
 
     set -l full_prompt fish_full_prompt
     set -l original_length (\
