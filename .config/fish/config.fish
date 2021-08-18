@@ -4,4 +4,4 @@ export LIBGL_ALWAYS_INDIRECT=1
 set PATH /mnt/c/Windows/ $PATH
 set PATH /mnt/c/Windows/System32 $PATH
 set_path $HOME/prefix
-bass theme_sync
+bass source theme_sync
