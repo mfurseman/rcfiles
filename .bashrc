@@ -52,7 +52,6 @@ function set_path {
     fi
 }
 
-
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -98,3 +97,8 @@ export HISTFILE=~/.bash_eternal_history
 # Prefer locally installed applications
 prefix="${HOME}/prefix"
 set_path "${prefix}"
+
+# If we're using WSL match themes with Windows
+if [ -n "${WSL_DISTRO_NAME}" ]; then
+    source theme_sync
+fi

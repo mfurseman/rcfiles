@@ -1,0 +1,30 @@
+#!/bin/bash
+
+LIGHT_THEME="one-light"
+DARK_THEME="one-dark"
+
+WINHOME=$(wslpath "$(cmd.exe /C "echo %USERPROFILE%" 2>/dev/null | tr -d '\r' | tail -1)")
+settings="$WINHOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+settingsPreview="$WINHOME/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
+
+if reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q 0x1; then
+  fromTheme="${DARK_THEME}"
+  toTheme="${LIGHT_THEME}"
+else
+  fromTheme="${LIGHT_THEME}"
+  toTheme="${DARK_THEME}"
+fi
+
+# Use temp file as sed inplace is not atomic.
+if [ -f "$settings" ]; then
+  sed "s/\"colorScheme\": \"$fromTheme\"/\"colorScheme\": \"$toTheme\"/g" "$settings" >/tmp/terminal$$.json
+  cp /tmp/terminal$$.json "$settings"
+fi
+if [ -f "$settingsPreview" ]; then
+  sed "s/\"colorScheme\": \"$fromTheme\"/\"colorScheme\": \"$toTheme\"/g" "$settingsPreview" >/tmp/terminal$$.json
+  cp /tmp/terminal$$.json "$settingsPreview"
+fi
+rm /tmp/terminal$$.json
+
+export LS_COLORS="$(vivid generate ${toTheme})"
+ 

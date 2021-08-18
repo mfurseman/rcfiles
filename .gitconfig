@@ -1,13 +1,17 @@
 [user]
-	email = matthew.furseman@ukaea.uk
-	name = Matthew Furseman
-
+    email = matthew.furseman@ukaea.uk
+    name = Matthew Furseman
 [color "diff"]
-  commit = blue
-  meta = yellow
-  frag = cyan
-  old = red bold
-  new = green bold
-  whitespace = red reverse
+    commit = blue
+    meta = yellow
+    frag = cyan
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [color]
-	ui = auto
+    ui = auto
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
