@@ -27,3 +27,4 @@ fi
 rm /tmp/terminal$$.json
 
 export LS_COLORS="$(vivid generate ${toTheme})"
+ 
