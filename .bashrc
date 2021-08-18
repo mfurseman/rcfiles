@@ -26,25 +26,8 @@ alias la='ls -A'
 alias fgrep='grep -F'
 alias egrep='grep -E'
 
-# If we're on Solaris
-if [ -x /usr/local/depot/vim-7.4/bin/vim ]; then
-    # Then use Vim 7.4
-    alias vim='/usr/bin/env TERM=xtermc /usr/local/depot/vim-7.4/bin/vim'
-fi
-
-# Set background colours for xterm, without using .Xdisplay or .Xresources
-alias xterm='xterm -bg black -fg green'
-
-# Incase we don't have tree installed
-if ! type tree > /dev/null 2>&1 ; then
-    alias tree='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/   /'"'"' -e '"'"'s/-/|/'"'"
-fi
-
 # No real reason to use unimproved vim
 alias vi='vim'
-
-# Use for a vim pager
-alias vless='/usr/share/vim/vim72/macros/less.sh'
 
 # Makes a Git life a bit easier
 alias gk='gitk --all --date-order &'
@@ -86,7 +69,7 @@ fi
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="[\[\e[33m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\] \[\e[32m\]\W\[\e[34m\]\$(parse_git_branch)\[\e[m\]]\\$ "
+export PS1="[\[\e[1m\]\[\e[32m\]\u\[\e[m\]@\\[\e[1m\]\[\e[32m\]\h\[\e[m\] \[\e[0m\]\W\\[\e[1m\]\[\e[34m\]\$(parse_git_branch)\[\e[m\]]\\$ "
 
 # Vim, vim, vim
 export EDITOR=vim
@@ -111,27 +94,6 @@ HISTCONTROL=ignoreboth
 
 # Change the file location because certain bash sessions truncate .bash_history # file upon close.
 export HISTFILE=~/.bash_eternal_history
-
-# More Solaris customisation
-if [ "$(uname)" = "SunOS" ]; then
-    # We need a bunch of stuff on the path before we can use our 'set_path' on Solaris
-    export LD_LIBRARY_PATH=/usr/local/depot/gcc-5.2.0/lib/:$LD_LIBRARY_PATH
-    export PATH=/usr/local/depot/gcc-5.2.0/bin:$PATH
-
-    # What's this for?
-    export LANG=en_GB
-
-    # Add custom prefix to path
-    set_path /work/mfurse/prefix-sun4u-sparc/
-
-    # We don't get home set when coming from a CDO terminal, so assume we want to
-    # set in if we source this file.
-    export HOME=/home/mfurse
-fi
-
-if [ "echo $(hostname) | grep freia" ]; then
-    set_path /work/mfurse/prefix-el7-x86_64/
-fi
 
 # Prefer locally installed applications
 prefix="${HOME}/prefix"

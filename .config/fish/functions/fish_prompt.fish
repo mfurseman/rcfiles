@@ -2,32 +2,32 @@ function fish_full_prompt
 
     echo -n -s \
         [ \
-        (set_color yellow) $USER \
+        (set_color --bold green) $USER \
         (set_color normal) @ \
-        (set_color yellow) (hostname)
+        (set_color --bold green) (hostname)
     if set -q WSL_DISTRO_NAME
         echo -n -s \
-            (set_color yellow) \( \
+            (set_color --bold green) \( \
             (set_color blue) $WSL_DISTRO_NAME \
-            (set_color yellow) \)
+            (set_color --bold green) \)
     end
     echo -n -s \
         (set_color normal) " " (pwd) \
-        (set_color blue) (__fish_git_prompt) \
+        (set_color --bold blue) (__fish_git_prompt) \
         (set_color normal) "]\$ "
 end
 
 function fish_medium_prompt
     echo -n -s \
         [ \
-        (set_color yellow) $USER \
+        (set_color --bold green) $USER \
         (set_color normal) @ \
-        (set_color yellow) (hostname)
+        (set_color --bold green) (hostname)
     if set -q WSL_DISTRO_NAME
         echo -n -s \
-            (set_color yellow) \( \
+            (set_color --bold green) \( \
             (set_color blue) $WSL_DISTRO_NAME \
-            (set_color yellow) \)
+            (set_color --bold green) \)
     end
     echo -n -s \
         (set_color normal) "]\$ "
@@ -36,7 +36,7 @@ end
 function fish_short_prompt
     echo -n -s \
         [ \
-        (set_color yellow) $USER \
+        (set_color --bold green) $USER \
         (set_color normal) " " (basename (pwd)) \
         (set_color normal) "]\$ "
 end
