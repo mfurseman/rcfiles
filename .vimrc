@@ -15,7 +15,7 @@ set smartcase
 
 " Enable syntax highlighting
 syntax enable
-set background=dark
+set background=light
 set hlsearch
 
 " Choose mapping to terminal colours
