@@ -95,7 +95,7 @@ HISTCONTROL=ignoreboth
 export HISTFILE=~/.bash_eternal_history
 
 # Prefer locally installed applications
-prefix="${HOME}/prefix"
+prefix="${HOME}/.local"
 set_path "${prefix}"
 
 # If we're using WSL match themes with Windows
