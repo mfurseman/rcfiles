@@ -9,7 +9,7 @@
     new = green bold
     whitespace = red reverse
 [color]
-    ui = auto
+	ui = auto
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -17,3 +17,8 @@
     required = true
 [core]
     editor = vim
+[diff]
+	guitool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
