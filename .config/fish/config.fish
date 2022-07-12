@@ -1,4 +1,4 @@
-export WIN_VER=(echo (cmd.exe /c ver) | sed 's/.*\[Version \([^]]*\)\].*/\1/g')
+export WIN_VER=(echo (cd /c && cmd.exe /c ver) | sed 's/.*\[Version \([^]]*\)\].*/\1/g')
 export WSL_HOST=(tail -1 /etc/resolv.conf | cut -d' ' -f2)
 export DISPLAY=:0
 # Fall back to vcxsrv for Windows 10
